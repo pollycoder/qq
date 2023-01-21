@@ -2,6 +2,9 @@
 #define CHATSERVER_H
 
 #include <QWidget>
+#include <QTcpServer>
+#include <QTcpSocket>
+#include <QList>
 
 namespace Ui {
 class ChatServer;
@@ -17,6 +20,9 @@ public:
 
 private:
     Ui::ChatServer *ui;
+    QTcpServer *server;
+    QList<QTcpSocket*> clients;
+
 };
 
 #endif // CHATSERVER_H
