@@ -38,6 +38,32 @@
      <string>Welcome to Chattery !</string>
     </property>
    </widget>
+   <widget class="QPushButton" name="tcpserver_button">
+    <property name="geometry">
+     <rect>
+      <x>220</x>
+      <y>320</y>
+      <width>171</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>TCP Server</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="tcpclient_button">
+    <property name="geometry">
+     <rect>
+      <x>450</x>
+      <y>320</y>
+      <width>171</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>TCP Client</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">

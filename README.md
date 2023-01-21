@@ -21,8 +21,11 @@ void slot_readyRead();						// When a client sends message, readyRead() signal
 ```c++
 QTcpSocket *socket;
 QString username;
+QString password;
+bool ifConnected;
 
-void connectToHost(ui->ipEdit->text(),ui->portEdit->text().toInt());	// Connect to the host
+void connectToServer();						// Connect to the server
+void send_message();							// Send message to the server
 
 ```
 
