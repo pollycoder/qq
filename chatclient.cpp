@@ -1,6 +1,10 @@
 #include "chatclient.h"
 #include "ui_chatclient.h"
 
+
+/******************************************
+ * Client
+ ******************************************/
 ChatClient::ChatClient(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::ChatClient)
@@ -35,6 +39,16 @@ void ChatClient::slot_readMessage() {
     QString msg = username + ":" + ori_msg;
     ui->chathistory->append(msg);
 }
+
+
+/***********************************************
+ * SQL for clients:
+ *  Register: insert
+ *  Log out: delete
+ *  Change profile: change
+ *  Search for users: search
+ ***********************************************/
+
 
 
 

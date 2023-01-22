@@ -509,28 +509,6 @@ color: rgb(148, 55, 255);</string>
 color: rgb(0, 0, 0);</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="connectbutton">
-   <property name="geometry">
-    <rect>
-     <x>60</x>
-     <y>460</y>
-     <width>111</width>
-     <height>51</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>20</pointsize>
-    </font>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">background-color: rgb(255, 252, 121);
-color: rgb(148, 55, 255);</string>
-   </property>
-   <property name="text">
-    <string>Connect</string>
-   </property>
-  </widget>
  </widget>
  <resources/>
  <connections/>

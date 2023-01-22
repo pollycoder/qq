@@ -6,6 +6,7 @@
 #include <QHostAddress>
 #include <QString>
 
+
 namespace Ui {
 class ChatClient;
 }
@@ -33,5 +34,8 @@ private:
     QString password;
     bool ifConnected = false;
 };
+
+
+
 
 #endif // CHATCLIENT_H

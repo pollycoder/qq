@@ -2,6 +2,11 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QSqlDatabase>
+#include <QSqlQueryModel>
+#include <QSqlQuery>
+#include <QSqlError>
+
 #include "chatserver.h"
 #include "chatclient.h"
 
@@ -27,4 +32,13 @@ private:
     ChatServer *server = new ChatServer();
     ChatClient *client = new ChatClient();
 };
+
+
+
+static QSqlDatabase client_db = QSqlDatabase::addDatabase("QMYSQL");
+const QString hostName = "localhost";
+const QString dbName = "clients_db";
+const QString userName = "root";
+const QString password = "pollyjoe2003";
+void init_database();
 #endif // MAINWINDOW_H
