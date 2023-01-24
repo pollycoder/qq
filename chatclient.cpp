@@ -41,13 +41,6 @@ void ChatClient::slot_readMessage() {
 }
 
 
-/***********************************************
- * SQL for clients:
- *  Register: insert
- *  Log out: delete
- *  Change profile: change
- *  Search for users: search
- ***********************************************/
 
 
 

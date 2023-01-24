@@ -12,17 +12,22 @@ CONFIG += c++17
 
 SOURCES += \
     chatclient.cpp \
+    chatroom.cpp \
     chatserver.cpp \
+    database.cpp \
     main.cpp \
     mainwindow.cpp
 
 HEADERS += \
     chatclient.h \
+    chatroom.h \
     chatserver.h \
+    database.h \
     mainwindow.h
 
 FORMS += \
     chatclient.ui \
+    chatroom.ui \
     chatserver.ui \
     mainwindow.ui
 

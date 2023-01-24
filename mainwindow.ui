@@ -22,8 +22,8 @@
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>200</x>
-      <y>130</y>
+      <x>180</x>
+      <y>100</y>
       <width>441</width>
       <height>101</height>
      </rect>
@@ -38,31 +38,108 @@
      <string>Welcome to Chattery !</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="tcpserver_button">
+   <widget class="QPushButton" name="pushButton">
     <property name="geometry">
      <rect>
-      <x>220</x>
-      <y>320</y>
-      <width>171</width>
-      <height>61</height>
+      <x>630</x>
+      <y>400</y>
+      <width>100</width>
+      <height>32</height>
      </rect>
     </property>
     <property name="text">
-     <string>TCP Server</string>
+     <string>PushButton</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="tcpclient_button">
+   <widget class="QSplitter" name="splitter_2">
     <property name="geometry">
      <rect>
-      <x>450</x>
-      <y>320</y>
-      <width>171</width>
-      <height>61</height>
+      <x>190</x>
+      <y>230</y>
+      <width>406</width>
+      <height>101</height>
      </rect>
     </property>
-    <property name="text">
-     <string>TCP Client</string>
+    <property name="orientation">
+     <enum>Qt::Horizontal</enum>
     </property>
+    <widget class="QSplitter" name="splitter">
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+     <widget class="QLabel" name="label_2">
+      <property name="font">
+       <font>
+        <family>Gurmukhi MN</family>
+        <pointsize>20</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>Phone number: </string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_3">
+      <property name="font">
+       <font>
+        <family>Gurmukhi MN</family>
+        <pointsize>20</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>Password:</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="">
+     <layout class="QVBoxLayout" name="verticalLayout">
+      <item>
+       <widget class="QPlainTextEdit" name="input_tel">
+        <property name="font">
+         <font>
+          <family>Gurmukhi MN</family>
+          <pointsize>20</pointsize>
+         </font>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPlainTextEdit" name="input_pw">
+        <property name="font">
+         <font>
+          <family>Gurmukhi MN</family>
+          <pointsize>20</pointsize>
+         </font>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="">
+    <property name="geometry">
+     <rect>
+      <x>250</x>
+      <y>390</y>
+      <width>281</width>
+      <height>91</height>
+     </rect>
+    </property>
+    <layout class="QGridLayout" name="gridLayout">
+     <item row="0" column="0">
+      <widget class="QPushButton" name="login">
+       <property name="text">
+        <string>Log in</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="1">
+      <widget class="QPushButton" name="register_2">
+       <property name="text">
+        <string>Register</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">

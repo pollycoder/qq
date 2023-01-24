@@ -21,8 +21,6 @@ public:
 
     void connectToServer(QHostAddress &host); // Connect to the server
 
-
-
 private slots:
     void slot_sendMessage();
     void slot_readMessage();
@@ -34,7 +32,6 @@ private:
     QString password;
     bool ifConnected = false;
 };
-
 
 
 
