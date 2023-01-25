@@ -22,7 +22,7 @@ ChatClient::~ChatClient()
 
 void ChatClient::connectToServer(QHostAddress &host) {
     if (!ifConnected) {
-        socket->connectToHost(QHostAddress::LocalHost, 9999);
+        socket->connectToHost(host, 9999);
         ifConnected = true;
     }
 }
@@ -36,8 +36,7 @@ void ChatClient::slot_sendMessage() {
 
 void ChatClient::slot_readMessage() {
     QString ori_msg(socket->readAll().data());
-    QString msg = username + ":" + ori_msg;
-    ui->chathistory->append(msg);
+    message = username + ":" + ori_msg;
 }
 
 

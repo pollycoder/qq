@@ -21,6 +21,8 @@ public:
 
     void connectToServer(QHostAddress &host); // Connect to the server
 
+    QString getUsername() { return username; }
+
 private slots:
     void slot_sendMessage();
     void slot_readMessage();
@@ -28,9 +30,11 @@ private slots:
 private:
     Ui::ChatClient *ui;
     QTcpSocket *socket;
-    QString username = "Polly";
+    QString username;
     QString password;
     bool ifConnected = false;
+
+    QString message;
 };
 
 
