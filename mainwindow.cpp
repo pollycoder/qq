@@ -17,9 +17,3 @@ MainWindow::~MainWindow()
 }
 
 
-
-void MainWindow::on_pushButton_clicked()
-{
-    room->client->show();
-}
-

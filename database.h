@@ -6,15 +6,18 @@
 #include <QSqlQueryModel>
 #include <QSqlError>
 #include <QString>
+#include <QMessageBox>
 
 class Database
 {
 public:
-    Database() = default;
-    Database(QString db_name);
-    ~Database() = delete;
+    explicit Database() = default;
+    explicit Database(QString db_name);
+    ~Database() { close(); }
 
-    bool ok();                                  // Whether the database is working
+    bool ok();                                          // Whether the database is working
+
+    void close(){ if (db.isOpen()) db.close(); }
 
 
 private:
