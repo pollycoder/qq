@@ -11,6 +11,7 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    chatbubble.cpp \
     chatclient.cpp \
     chatroom.cpp \
     chatserver.cpp \
@@ -19,6 +20,7 @@ SOURCES += \
     mainwindow.cpp
 
 HEADERS += \
+    chatbubble.h \
     chatclient.h \
     chatroom.h \
     chatserver.h \
@@ -26,6 +28,7 @@ HEADERS += \
     mainwindow.h
 
 FORMS += \
+    chatbubble.ui \
     chatclient.ui \
     chatroom.ui \
     chatserver.ui \

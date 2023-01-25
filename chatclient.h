@@ -28,7 +28,7 @@ private slots:
 private:
     Ui::ChatClient *ui;
     QTcpSocket *socket;
-    QString username;
+    QString username = "Polly";
     QString password;
     bool ifConnected = false;
 };
