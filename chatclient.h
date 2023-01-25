@@ -7,6 +7,8 @@
 #include <QString>
 
 
+class ChatRoom;
+
 namespace Ui {
 class ChatClient;
 }
@@ -24,8 +26,11 @@ public:
     QString getUsername() { return username; }
 
 private slots:
-    void slot_sendMessage();
+    void slot_sendMessage(QString);
     void slot_readMessage();
+    signals:
+    void alreadyRead(QString);
+
 
 private:
     Ui::ChatClient *ui;
@@ -33,7 +38,6 @@ private:
     QString username;
     QString password;
     bool ifConnected = false;
-
     QString message;
 };
 
