@@ -7,7 +7,7 @@ ChatServer::ChatServer(QWidget *parent) :
     ui->setupUi(this);
     server = new QTcpServer();
     this->start_server();
-    ui->ipaddr->setText(this->getServer()->serverAddress().toString());
+    ui->ipaddr->setText(QString::number(this->getServer()->serverPort()));
 }
 
 ChatServer::~ChatServer() {

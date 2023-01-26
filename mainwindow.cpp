@@ -23,3 +23,9 @@ void MainWindow::on_pushButton_clicked()
     room->show();
 }
 
+
+void MainWindow::on_pushButton_2_clicked()
+{
+    room->server->show();
+}
+

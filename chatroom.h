@@ -29,6 +29,7 @@ private slots:
 public:
     ChatServer *server = new ChatServer();
     ChatClient *client = new ChatClient();
+    QVector<ChatClient*> friends;
 
     Ui::ChatRoom* getUi() { return ui; }
 private:
