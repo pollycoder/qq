@@ -1,4 +1,5 @@
 #include "chatclient.h"
+#include "chatroom.h"
 #include "ui_chatclient.h"
 
 
@@ -12,7 +13,6 @@ ChatClient::ChatClient(QWidget *parent) :
     ui->setupUi(this);
     socket = new QTcpSocket(this);
     connect(socket, SIGNAL(readyRead()), this, SLOT(slot_readMessage()));
-    connect(ui->sendbutton, SIGNAL(clicked()), this, SLOT(slot_sendMessage()));
 }
 
 ChatClient::~ChatClient()
@@ -27,17 +27,16 @@ void ChatClient::connectToServer(QHostAddress &host) {
     }
 }
 
-void ChatClient::slot_sendMessage() {
-    QString msg = ui->inputbox->toPlainText();
+void ChatClient::slot_sendMessage(QString input_msg) {
+    QString msg = input_msg;
     socket->write(msg.toStdString().data());
     socket->waitForBytesWritten();
-    ui->inputbox->clear();
 }
 
 void ChatClient::slot_readMessage() {
     QString ori_msg(socket->readAll().data());
-    QString msg = username + ":" + ori_msg;
-    ui->chathistory->append(msg);
+    message = username + ":" + ori_msg;
+    emit alreadyRead(message);
 }
 
 

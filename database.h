@@ -17,7 +17,7 @@ public:
 
     bool ok();                                          // Whether the database is working
 
-    void close(){ if (db.isOpen()) db.close(); }
+    void close() { if (db.isOpen()) db.close(); }       // Close the database
 
 
 private:
