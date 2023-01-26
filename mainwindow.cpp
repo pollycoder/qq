@@ -7,21 +7,15 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
+
+    // Set the style sheet for main window
     setMinimumSize(850,500);
     setMaximumSize(850,500);
-    setStyleSheet("#MainWindow{border-image:url(:/bg_img/img/welcome_bg.jpeg);}");
+    //setStyleSheet("#MainWindow{border-image:url(:/img/welcome_bg.jpeg);}");
 
-    ui->login->setStyleSheet("background-color: rgb(255, 251, 0); color: rgb(83, 27, 147);");
-    ui->signup->setStyleSheet("background-color: rgb(255, 251, 0); color: rgb(83, 27, 147);");
-
-    ui->input_pw->setStyleSheet("background-color: rgb(255, 255, 255); color: rgb(0, 0, 0);");
-    ui->input_tel->setStyleSheet("background-color: rgb(255, 255, 255); color: rgb(0, 0, 0);");
-
-
-    ui->welcome->setText("Welcome to Chattery !");
-    ui->welcome->setFont(QFont("Chalkboard SE"));
-    ui->welcome->setStyleSheet("color: rgb(255, 251, 0);font: 40pt");
-
+    QFile file = QFile(":/qss/mainwindow.qss");
+    file.open(QIODevice::ReadOnly);
+    setStyleSheet(file.readAll());
 
 }
 
@@ -31,7 +25,12 @@ MainWindow::~MainWindow()
 }
 
 
-
+// !!!!-------------------------------------------------------------------------------------------------------------!!!!
+// !!!!-------------------------------------------------- Warning --------------------------------------------------!!!!
+// !!!!-------------------------------------------------------------------------------------------------------------!!!!
+// Just for test !!!
+// No removing before finishing the project !!!
+// Remove immediately when finish the project !!!
 void MainWindow::on_pushButton_clicked()
 {
     room->show();
