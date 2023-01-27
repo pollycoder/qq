@@ -20,9 +20,9 @@ ChatClient::~ChatClient()
     delete ui;
 }
 
-void ChatClient::connectToServer(QHostAddress &host) {
+void ChatClient::connectToServer() {
     if (!ifConnected) {
-        socket->connectToHost(QHostAddress::LocalHost, 9999);
+        socket->connectToHost("192.168.31.113", 9999);
         ifConnected = true;
     }
 }
