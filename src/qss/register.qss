@@ -1,0 +1,45 @@
+#Register{
+    border-image: url(:/img/welcome_bg.jpeg);
+}
+
+.QLineEdit#input_pw,#input_tel, #input_user {
+    background-color: rgb(255, 255, 255); 
+    color: rgb(0, 0, 0);
+    border-radius: 2px;
+}
+
+.QLabel#registerlabel {
+    font: 40pt "Chalkboard SE";
+    color: rgb(255, 251, 0);
+}
+
+
+.QLabel#pw, #tel, #user {
+    font: 20pt "Chalkboard SE";
+    color: rgb(255, 251, 0);
+}
+
+.QPushButton#clear, #signup {
+    background-color: qlineargradient(x1:0, y1:0,
+                                      x2:0, y2:1,
+                                      stop:0 darkviolet,
+                                      stop:1 violet);
+    color: rgb(255, 255, 0);
+    border-radius: 10px;
+}
+
+.QPushButton#clear:hover, #signup:hover {
+    background-color: rgb(255, 255, 224);
+    color: rgb(186, 85, 211);
+    border-radius: 10px;
+}
+
+.QPushButton#clear:pressed, #signup:pressed {
+    background-color: qlineargradient(x1:0, y1:0,
+                                      x2:0, y2:1,
+                                      stop:0 yellow,
+                                      stop:1 gold);
+    color: rgb(83, 27, 147);
+    border-radius: 10px;
+    text-decoration: underline;
+}

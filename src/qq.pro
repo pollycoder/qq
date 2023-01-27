@@ -17,7 +17,8 @@ SOURCES += \
     chatserver.cpp \
     database.cpp \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    register.cpp
 
 HEADERS += \
     chatbubble.h \
@@ -25,14 +26,16 @@ HEADERS += \
     chatroom.h \
     chatserver.h \
     database.h \
-    mainwindow.h
+    mainwindow.h \
+    register.h
 
 FORMS += \
     chatbubble.ui \
     chatclient.ui \
     chatroom.ui \
     chatserver.ui \
-    mainwindow.ui
+    mainwindow.ui \
+    register.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

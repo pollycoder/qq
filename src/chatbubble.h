@@ -2,6 +2,7 @@
 #define CHATBUBBLE_H
 
 #include <QWidget>
+#include <QWebEngineView>
 
 namespace Ui {
 class ChatBubble;

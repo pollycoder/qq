@@ -2,10 +2,10 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include <QFile>
 
-
+#include "register.h"
 #include "chatroom.h"
+#include "database.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -19,15 +19,17 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
-
 private slots:
-    void on_pushButton_clicked();
+    void slot_login();
+    void slot_register();
 
-    void on_pushButton_2_clicked();
 
 private:
     Ui::MainWindow *ui;
+    Register *regwindow = new Register();
     ChatRoom *room = new ChatRoom();
+    ChatClient *client = new ChatClient();
+    Database *client_db;
 };
 
 

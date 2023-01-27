@@ -3,5 +3,9 @@
         <file>img/login_bg.jpeg</file>
         <file>img/welcome_bg.jpeg</file>
         <file>qss/mainwindow.qss</file>
+        <file>html/chatbox_friends.html</file>
+        <file>html/chatbox_self.html</file>
+        <file>html/chatbox.css</file>
+        <file>qss/register.qss</file>
     </qresource>
 </RCC>
