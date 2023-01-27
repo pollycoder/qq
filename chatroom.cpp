@@ -10,7 +10,7 @@ ChatRoom::ChatRoom(QWidget *parent) :
     // Initialize tcpserver
     QTcpServer* tmp_server = server->getServer();
     QHostAddress tmp_host = tmp_server->serverAddress();
-    client->connectToServer(tmp_host);
+    client->connectToServer();
 
     connect(this, SIGNAL(send(QString)), client, SLOT(slot_sendMessage(QString)));
     connect(ui->send, SIGNAL(clicked()), this, SLOT(slot_sendMessage()));

@@ -21,7 +21,7 @@ public:
     explicit ChatClient(QWidget *parent = nullptr);
     ~ChatClient();
 
-    void connectToServer(QHostAddress &host); // Connect to the server
+    void connectToServer(); // Connect to the server
 
     QString getUsername() { return username; }
 
