@@ -22,14 +22,14 @@ SOURCES += \
     utils.cpp
 
 HEADERS += \
-    chatbubble.h \
-    chatclient.h \
-    chatroom.h \
-    chatserver.h \
-    database.h \
-    mainwindow.h \
-    register.h \
-    utils.h
+    ../include/chatbubble.h \
+    ../include/chatclient.h \
+    ../include/chatroom.h \
+    ../include/chatserver.h \
+    ../include/database.h \
+    ../include/mainwindow.h \
+    ../include/register.h \
+    ../include/utils.h \
 
 FORMS += \
     chatbubble.ui \
