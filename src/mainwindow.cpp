@@ -13,9 +13,8 @@ MainWindow::MainWindow(QWidget *parent)
     setMinimumSize(850,500);
     setMaximumSize(850,500);
 
-    QFile file = QFile(":/qss/mainwindow.qss");
-    file.open(QIODevice::ReadOnly);
-    setStyleSheet(file.readAll());
+    QString qssDir = ":/qss/mainwindow.qss";
+    SetStyleSheet(this, qssDir);
     ui->input_pw->setEchoMode(QLineEdit::Password);
     connect(ui->login, SIGNAL(clicked()), this, SLOT(slot_login()));
     connect(ui->signup, SIGNAL(clicked()), this, SLOT(slot_register()));
@@ -29,7 +28,7 @@ MainWindow::~MainWindow(){
 void MainWindow::slot_login() {
     QString tel = ui->input_tel->text();
     QString password = ui->input_pw->text();
-    QString findUser = QString("SELECT * FROM clients WHERE tel='%1'").arg(tel);
+    QString findUser = QString("SELECT * FROM client_info.clients WHERE tel='%1'").arg(tel);
     QSqlQuery query(findUser);
     if (query.first()) {
         QString username = query.value("username").toString();
@@ -38,9 +37,8 @@ void MainWindow::slot_login() {
             QString welcomeMsg = "Hello," + username + ",\nwelcome to CHATTERY !!!";
             QMessageBox::information(NULL, "Welcome !", welcomeMsg);
             this->close();
-            this->client->setUsername(username);
-            this->room->client->setUsername(username);
-            this->room->show();
+            this->user_client->setUser(tel);
+            this->user_client->show();
         } else {
             QMessageBox::critical(NULL, "Password incorrect !!!",
                                   "The password is incorrect ! Please try again !");

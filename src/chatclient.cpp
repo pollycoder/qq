@@ -13,6 +13,8 @@ ChatClient::ChatClient(QWidget *parent) :
     ui->setupUi(this);
     socket = new QTcpSocket(this);
     connect(socket, SIGNAL(readyRead()), this, SLOT(slot_readMessage()));
+    QString qssDir = ":/qss/chatclient.qss";
+    SetStyleSheet(this, qssDir);
 }
 
 ChatClient::~ChatClient()
@@ -24,6 +26,26 @@ void ChatClient::connectToServer() {
     if (!ifConnected) {
         socket->connectToHost("192.168.31.113", 9999);
         ifConnected = true;
+    }
+}
+
+
+void ChatClient::setUser(const QString &tel) {
+    QString select = QString("select * from clients");
+    QSqlQuery query;
+    if (query.exec(select)) {
+        QSqlTableModel model;
+        model.setTable("clients");
+        model.setFilter(QString("tel = '%1'").arg(tel));
+        if (model.select()) {
+            QSqlRecord record = model.record(0);
+            avatar.loadFromData(record.value("avatar").toByteArray(), "JPG");
+            LoadPixmap(ui->avatar, avatar);
+            username = record.value("username").toString();
+            ui->username->setText(username);
+        }
+    } else {
+        QMessageBox::warning(NULL, "Something is wrong !", "Something bad happens, please try again.");
     }
 }
 

@@ -7,5 +7,7 @@
         <file>html/chatbox_self.html</file>
         <file>html/chatbox.css</file>
         <file>qss/register.qss</file>
+        <file>img/user_boy.png</file>
+        <file>qss/chatclient.qss</file>
     </qresource>
 </RCC>

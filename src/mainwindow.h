@@ -27,8 +27,7 @@ private slots:
 private:
     Ui::MainWindow *ui;
     Register *regwindow = new Register();
-    ChatRoom *room = new ChatRoom();
-    ChatClient *client = new ChatClient();
+    ChatClient *user_client = new ChatClient();
     Database *client_db;
 };
 

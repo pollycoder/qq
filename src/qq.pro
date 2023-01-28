@@ -18,7 +18,8 @@ SOURCES += \
     database.cpp \
     main.cpp \
     mainwindow.cpp \
-    register.cpp
+    register.cpp \
+    utils.cpp
 
 HEADERS += \
     chatbubble.h \
@@ -27,7 +28,8 @@ HEADERS += \
     chatserver.h \
     database.h \
     mainwindow.h \
-    register.h
+    register.h \
+    utils.h
 
 FORMS += \
     chatbubble.ui \

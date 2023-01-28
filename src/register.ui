@@ -61,12 +61,12 @@
     <string>Register</string>
    </property>
   </widget>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
-     <x>60</x>
-     <y>130</y>
-     <width>571</width>
+     <x>20</x>
+     <y>120</y>
+     <width>471</width>
      <height>281</height>
     </rect>
    </property>
@@ -167,6 +167,25 @@
      </layout>
     </item>
    </layout>
+  </widget>
+  <widget class="QPushButton" name="avatar">
+   <property name="geometry">
+    <rect>
+     <x>550</x>
+     <y>170</y>
+     <width>100</width>
+     <height>100</height>
+    </rect>
+   </property>
+   <property name="layoutDirection">
+    <enum>Qt::LeftToRight</enum>
+   </property>
+   <property name="styleSheet">
+    <string notr="true"/>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
   </widget>
  </widget>
  <resources/>
