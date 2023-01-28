@@ -5,6 +5,8 @@
 #include <QFile>
 #include <QStyleOption>
 #include <QPainter>
+#include <QMessageBox>
+#include "database.h"
 
 namespace Ui {
 class Register;
@@ -20,8 +22,12 @@ public:
 
     void paintEvent(QPaintEvent *);
 
+private slots:
+    void slot_register();
+
 private:
     Ui::Register *ui;
+    Database *client_db;
 };
 
 #endif // REGISTER_H
