@@ -2,6 +2,9 @@
 #include "chatroom.h"
 #include "ui_chatclient.h"
 
+#include <QAbstractSocket>
+
+
 
 /******************************************
  * Client
@@ -12,7 +15,13 @@ ChatClient::ChatClient(QWidget *parent) :
 {
     ui->setupUi(this);
     socket = new QTcpSocket(this);
+    SetKeepAlive(socket);
     connect(socket, SIGNAL(readyRead()), this, SLOT(slot_readMessage()));
+    connect(socket, SIGNAL(error(QAbstractSocket::SocketError)), this, SLOT(slot_disconnected()));
+    connect(socket, SIGNAL(connected()), this, SLOT(slot_connected()));
+    connectToServer();
+
+
     QString qssDir = ":/qss/chatclient.qss";
     SetStyleSheet(this, qssDir);
 }
@@ -25,7 +34,6 @@ ChatClient::~ChatClient()
 void ChatClient::connectToServer() {
     if (!ifConnected) {
         socket->connectToHost("192.168.31.113", 9999);
-        ifConnected = true;
         qDebug() << "New connection !" << username;
     }
 }
@@ -60,6 +68,14 @@ void ChatClient::slot_readMessage() {
     QString ori_msg(socket->readAll().data());
     message = ori_msg;
     emit alreadyRead(message);
+}
+
+void ChatClient::slot_disconnected() {
+    ifConnected = false;
+    while (!ifConnected){
+        QMessageBox::warning(NULL, "Connection failed !", "Connection failed, try again.");
+        connectToServer();
+    }
 }
 
 

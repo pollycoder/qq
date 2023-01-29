@@ -11,6 +11,7 @@
 #include <QSqlTableModel>
 #include <QSqlRecord>
 
+
 #include "utils.h"
 class ChatRoom;
 
@@ -29,12 +30,19 @@ public:
     void connectToServer(); // Connect to the server
 
     QString getUsername() { return username; }
+    QTcpSocket* getSocket() { return socket; }
+
+
+
     void setUser(const QString &tel);
+
 
 
 private slots:
     void slot_sendMessage(QString);
     void slot_readMessage();
+    void slot_disconnected();
+    void slot_connected() { ifConnected = true; }
     signals:
     void alreadyRead(QString);
 

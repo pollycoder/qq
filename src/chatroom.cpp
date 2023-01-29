@@ -10,13 +10,12 @@ ChatRoom::ChatRoom(QWidget *parent) :
     // Initialize tcpserver
     QTcpServer* tmp_server = server->getServer();
     QHostAddress tmp_host = tmp_server->serverAddress();
-    client->connectToServer();
 
     connect(this, SIGNAL(send(QString)), client, SLOT(slot_sendMessage(QString)));
     connect(ui->send, SIGNAL(clicked()), this, SLOT(slot_sendMessage()));
     connect(client, SIGNAL(alreadyRead(QString)), this, SLOT(slot_displayMessage(QString)));
     connect(ui->clearText, SIGNAL(clicked()), this, SLOT(slot_clearInput()));
-    connect(this->client, SIGNAL(disconnected()), this->server, SLOT(slot_disconnected()));
+    connect(this->client->getSocket(), SIGNAL(disconnected()), this->server, SLOT(slot_disconnected()));
 }
 
 ChatRoom::~ChatRoom()
