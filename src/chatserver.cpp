@@ -7,7 +7,7 @@ ChatServer::ChatServer(QWidget *parent) :
     ui->setupUi(this);
     server = new QTcpServer();
     this->start_server();
-    ui->ipaddr->setText(QString::number(this->getServer()->serverPort()));
+    ui->ipaddr->setText(this->getServer()->serverAddress().toString());
 }
 
 ChatServer::~ChatServer() {
@@ -17,7 +17,7 @@ ChatServer::~ChatServer() {
 
 void ChatServer::start_server() {
     server = new QTcpServer(this);
-    server->listen(QHostAddress::Any, 9999);
+    server->listen(QHostAddress("192.168.31.113"), 9999);
     connect(server, SIGNAL(newConnection()), this, SLOT(slot_newConnection()));
 }
 
@@ -33,6 +33,8 @@ void ChatServer::send_message(const QByteArray &msg) {
 void ChatServer::slot_newConnection() {
     QTcpSocket *new_client = server->nextPendingConnection();
     clients.push_back(new_client);
+    QString clientInfo = new_client->peerAddress().toString() + ":"+  QString::number(new_client->peerPort());
+    ui->clients->addItem(clientInfo);
     connect(new_client, SIGNAL(readyRead()), this, SLOT(slot_readyRead()));
 }
 
@@ -44,5 +46,5 @@ void ChatServer::slot_readyRead() {
 }
 
 void ChatServer::slot_disconnected() {
-
+    QMessageBox::warning(NULL, "Offline !", "There is a client offline !");
 }

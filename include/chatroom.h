@@ -18,6 +18,8 @@ public:
     explicit ChatRoom(QWidget *parent = nullptr);
     ~ChatRoom();
 
+    ChatServer* getServer() { return server; }
+
 private slots:
     void slot_sendMessage();
     void slot_displayMessage(QString msg);

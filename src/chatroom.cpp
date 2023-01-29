@@ -16,6 +16,7 @@ ChatRoom::ChatRoom(QWidget *parent) :
     connect(ui->send, SIGNAL(clicked()), this, SLOT(slot_sendMessage()));
     connect(client, SIGNAL(alreadyRead(QString)), this, SLOT(slot_displayMessage(QString)));
     connect(ui->clearText, SIGNAL(clicked()), this, SLOT(slot_clearInput()));
+    connect(this->client, SIGNAL(disconnected()), this->server, SLOT(slot_disconnected()));
 }
 
 ChatRoom::~ChatRoom()

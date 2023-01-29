@@ -26,6 +26,7 @@ void ChatClient::connectToServer() {
     if (!ifConnected) {
         socket->connectToHost("192.168.31.113", 9999);
         ifConnected = true;
+        qDebug() << "New connection !" << username;
     }
 }
 
@@ -50,14 +51,14 @@ void ChatClient::setUser(const QString &tel) {
 }
 
 void ChatClient::slot_sendMessage(QString input_msg) {
-    QString msg = input_msg;
+    QString msg = username + ": " + input_msg;
     socket->write(msg.toStdString().data());
     socket->waitForBytesWritten();
 }
 
 void ChatClient::slot_readMessage() {
     QString ori_msg(socket->readAll().data());
-    message = username + ":" + ori_msg;
+    message = ori_msg;
     emit alreadyRead(message);
 }
 

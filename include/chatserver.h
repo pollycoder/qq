@@ -6,6 +6,7 @@
 #include <QTcpSocket>
 #include <QVector>
 #include <QByteArray>
+#include <QMessageBox>
 
 namespace Ui {
 class ChatServer;

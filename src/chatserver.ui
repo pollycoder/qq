@@ -39,8 +39,8 @@
   <widget class="QSplitter" name="splitter">
    <property name="geometry">
     <rect>
-     <x>161</x>
-     <y>150</y>
+     <x>120</x>
+     <y>90</y>
      <width>421</width>
      <height>24</height>
     </rect>
@@ -58,6 +58,16 @@
      <string>hi~</string>
     </property>
    </widget>
+  </widget>
+  <widget class="QListWidget" name="clients">
+   <property name="geometry">
+    <rect>
+     <x>110</x>
+     <y>150</y>
+     <width>371</width>
+     <height>261</height>
+    </rect>
+   </property>
   </widget>
  </widget>
  <resources/>
