@@ -6,99 +6,86 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>654</width>
-    <height>479</height>
+    <width>588</width>
+    <height>408</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <widget class="QGroupBox" name="groupBox">
+  <widget class="QListView" name="chatrooms">
    <property name="geometry">
     <rect>
-     <x>10</x>
-     <y>-10</y>
-     <width>120</width>
-     <height>480</height>
+     <x>100</x>
+     <y>10</y>
+     <width>461</width>
+     <height>371</height>
     </rect>
    </property>
-   <property name="title">
-    <string>GroupBox</string>
-   </property>
-   <widget class="QLabel" name="avatar">
-    <property name="geometry">
-     <rect>
-      <x>20</x>
-      <y>30</y>
-      <width>60</width>
-      <height>60</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Avatar</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="username">
-    <property name="geometry">
-     <rect>
-      <x>20</x>
-      <y>100</y>
-      <width>91</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Username</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="chats">
-    <property name="geometry">
-     <rect>
-      <x>20</x>
-      <y>240</y>
-      <width>60</width>
-      <height>60</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Chats</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="friends">
-    <property name="geometry">
-     <rect>
-      <x>20</x>
-      <y>320</y>
-      <width>60</width>
-      <height>60</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Friends</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="logout">
-    <property name="geometry">
-     <rect>
-      <x>20</x>
-      <y>400</y>
-      <width>60</width>
-      <height>60</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Log out</string>
-    </property>
-   </widget>
   </widget>
-  <widget class="QListView" name="listView">
+  <widget class="QLabel" name="avatar">
    <property name="geometry">
     <rect>
-     <x>130</x>
-     <y>-10</y>
-     <width>500</width>
-     <height>480</height>
+     <x>20</x>
+     <y>10</y>
+     <width>60</width>
+     <height>60</height>
     </rect>
+   </property>
+   <property name="text">
+    <string>Avatar</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="username">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>70</y>
+     <width>91</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Username</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="chats">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>140</y>
+     <width>60</width>
+     <height>60</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Chats</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="friends">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>230</y>
+     <width>60</width>
+     <height>60</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Friends</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="logout">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>320</y>
+     <width>60</width>
+     <height>60</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Log out</string>
    </property>
   </widget>
  </widget>

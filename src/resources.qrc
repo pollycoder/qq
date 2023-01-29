@@ -9,5 +9,6 @@
         <file>qss/register.qss</file>
         <file>img/user_boy.png</file>
         <file>qss/chatclient.qss</file>
+        <file>img/chatroom.png</file>
     </qresource>
 </RCC>

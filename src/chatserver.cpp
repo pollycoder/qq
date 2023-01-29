@@ -36,7 +36,6 @@ void ChatServer::send_message(const QByteArray &msg) {
 }
 
 void ChatServer::slot_newConnection() {
-
     QTcpSocket *new_client = server->nextPendingConnection();
     clients.push_back(new_client);
     QString clientInfo = new_client->peerAddress().toString() + ":"+  QString::number(new_client->peerPort());
@@ -52,7 +51,6 @@ void ChatServer::slot_readyRead() {
 }
 
 void ChatServer::slot_disconnected() {
-    QMessageBox::warning(NULL, "Offline !", "There is a client offline !");
     while (!server->isListening()) {
         qDebug() << "Host closed !";
         start_server();

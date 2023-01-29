@@ -1,7 +1,11 @@
 
+#ChatClient {
+    background-color: #FFC1C1;
+}
+
 .QLabel#username {
     font: 20pt "Chalkboard SE";
-    color: rgb(255, 251, 0);
+    color: #9400D3;
 }
 
 .QPushButton#chats, #friends, #logout {
@@ -27,4 +31,10 @@
     color: rgb(83, 27, 147);
     border-radius: 10px;
     text-decoration: underline;
+}
+
+.QListView#chatrooms {
+    background-color: #8B658B;
+    font: 20pt "Arial";
+    color: white;
 }

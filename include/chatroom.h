@@ -19,19 +19,20 @@ public:
     ~ChatRoom();
 
     ChatServer* getServer() { return server; }
+    void newClient(ChatClient* newClient);
 
 private slots:
     void slot_sendMessage();
     void slot_displayMessage(QString msg);
     void slot_clearInput();
+    void slot_newClient(ChatClient* client);
 
     signals:
     void send(QString);
 
 public:
     ChatServer *server = new ChatServer();
-    ChatClient *client = new ChatClient();
-    QVector<ChatClient*> friends;
+    QVector<ChatClient*> clients;
 
     Ui::ChatRoom* getUi() { return ui; }
 private:

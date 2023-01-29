@@ -11,11 +11,11 @@ ChatRoom::ChatRoom(QWidget *parent) :
     QTcpServer* tmp_server = server->getServer();
     QHostAddress tmp_host = tmp_server->serverAddress();
 
-    connect(this, SIGNAL(send(QString)), client, SLOT(slot_sendMessage(QString)));
+
     connect(ui->send, SIGNAL(clicked()), this, SLOT(slot_sendMessage()));
-    connect(client, SIGNAL(alreadyRead(QString)), this, SLOT(slot_displayMessage(QString)));
     connect(ui->clearText, SIGNAL(clicked()), this, SLOT(slot_clearInput()));
-    connect(this->client->getSocket(), SIGNAL(disconnected()), this->server, SLOT(slot_disconnected()));
+
+
 }
 
 ChatRoom::~ChatRoom()
@@ -24,6 +24,16 @@ ChatRoom::~ChatRoom()
 }
 
 
+void ChatRoom::newClient(ChatClient* newClient) {
+    clients.push_back(newClient);
+    connect(this, SIGNAL(send(QString)), newClient, SLOT(slot_sendMessage(QString)));
+    connect(newClient, SIGNAL(alreadyRead(QString)), this, SLOT(slot_displayMessage(QString)));
+    connect(newClient->getSocket(), SIGNAL(errorOccurred(QAbstractSocket::SocketError)), this->server, SLOT(slot_disconnected()));
+
+}
+
+
+// Slots
 void ChatRoom::slot_sendMessage() {
     QString msg = ui->inputMsg->toPlainText();
     emit send(msg);
@@ -36,4 +46,9 @@ void ChatRoom::slot_displayMessage(QString msg) {
 
 void ChatRoom::slot_clearInput() {
     ui->inputMsg->clear();
+}
+
+
+void ChatRoom::slot_newClient(ChatClient* client) {
+    newClient(client);
 }

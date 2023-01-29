@@ -62,14 +62,3 @@ void MainWindow::slot_register() {
 // !!!!!!--------------------------------------------------------------!!!!!!!!
 // Just for debugging, no change
 // Delete when the components are finished
-void MainWindow::on_pushButton_clicked()
-{
-    room->getServer()->show();
-}
-
-
-void MainWindow::on_pushButton_2_clicked()
-{
-    room->show();
-}
-
