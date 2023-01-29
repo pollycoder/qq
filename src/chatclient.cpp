@@ -1,6 +1,7 @@
 #include "chatclient.h"
-#include "chatroom.h"
 #include "ui_chatclient.h"
+#include <QAbstractSocket>
+
 
 
 /******************************************
@@ -12,7 +13,21 @@ ChatClient::ChatClient(QWidget *parent) :
 {
     ui->setupUi(this);
     socket = new QTcpSocket(this);
+    SetKeepAlive(socket);
     connect(socket, SIGNAL(readyRead()), this, SLOT(slot_readMessage()));
+    connect(socket, SIGNAL(errorOccurred(QAbstractSocket::SocketError)), this, SLOT(slot_disconnected()));
+    connect(socket, SIGNAL(hostFound()), this, SLOT(slot_connected()));
+    connectToServer();
+
+    QStandardItemModel* root_model = new QStandardItemModel();
+    QStandardItem* model_forum = new QStandardItem(QIcon(":/img/chatroom.png"), "Chattery Forum");
+    QStandardItem* model_family = new QStandardItem(QIcon(":/img/chatroom.png"), "Chattery Family");
+    root_model->appendRow(model_forum);
+    root_model->appendRow(model_family);
+    ui->chatrooms->setModel(root_model);
+
+    setMinimumSize(588,408);
+    setMaximumSize(588,408);
     QString qssDir = ":/qss/chatclient.qss";
     SetStyleSheet(this, qssDir);
 }
@@ -22,11 +37,31 @@ ChatClient::~ChatClient()
     delete ui;
 }
 
+
+void ChatClient::paintEvent(QPaintEvent *) {
+    QStyleOption opt;
+    opt.initFrom(this);
+    QPainter p(this);
+    style()->drawPrimitive(QStyle::PE_Widget, &opt, &p, this);
+}
+
+
 void ChatClient::connectToServer() {
     if (!ifConnected) {
+        qDebug() << "try to reconnect";
         socket->connectToHost("192.168.31.113", 9999);
-        ifConnected = true;
-        qDebug() << "New connection !" << username;
+
+        if (ifConnected) {
+            qDebug() << "New connection !" << username;
+        }
+        else {
+            failureTime += 1;
+            connectToServer();
+            if (failureTime >= 3) {
+                QMessageBox::warning(NULL, "Failed to connect", "Too many failure times ! Please check your network and restart the app.");
+                return;
+            }
+        }
     }
 }
 
@@ -50,6 +85,10 @@ void ChatClient::setUser(const QString &tel) {
     }
 }
 
+
+
+
+
 void ChatClient::slot_sendMessage(QString input_msg) {
     QString msg = username + ": " + input_msg;
     socket->write(msg.toStdString().data());
@@ -63,8 +102,15 @@ void ChatClient::slot_readMessage() {
 }
 
 
+void ChatClient::slot_disconnected() {
+    ifConnected = false;
+    connectToServer();
+}
 
-
+void ChatClient::slot_sendUserInfo() {
+    socket->write(username.toStdString().data());
+    socket->waitForBytesWritten();
+}
 
 
 

@@ -16,9 +16,14 @@ ChatServer::~ChatServer() {
 }
 
 void ChatServer::start_server() {
+    qDebug() << "start a new server !";
     server = new QTcpServer(this);
     server->listen(QHostAddress("192.168.31.113"), 9999);
-    connect(server, SIGNAL(newConnection()), this, SLOT(slot_newConnection()));
+    if (server->isListening()) {
+        connect(server, SIGNAL(newConnection()), this, SLOT(slot_newConnection()));
+    } else {
+        QMessageBox::warning(NULL, "No Internet !", "You are not connected to the Internet !");
+    }
 }
 
 void ChatServer::close_server() {
@@ -46,5 +51,8 @@ void ChatServer::slot_readyRead() {
 }
 
 void ChatServer::slot_disconnected() {
-    QMessageBox::warning(NULL, "Offline !", "There is a client offline !");
+    while (!server->isListening()) {
+        qDebug() << "Host closed !";
+        start_server();
+    }
 }

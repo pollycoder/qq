@@ -24,15 +24,12 @@ private slots:
     void slot_register();
 
 
-    void on_pushButton_clicked();
 
-    void on_pushButton_2_clicked();
 
 private:
     Ui::MainWindow *ui;
     Register *regwindow = new Register();
     ChatClient *user_client = new ChatClient();
-    ChatRoom *room = new ChatRoom();
     Database *client_db;
 };
 
