@@ -20,6 +20,7 @@ public:
 
     ChatServer* getServer() { return server; }
     void newClient(ChatClient* newClient);
+    void setName(QString &name);
 
 private slots:
     void slot_sendMessage();

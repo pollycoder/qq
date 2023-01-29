@@ -14,8 +14,6 @@ ChatRoom::ChatRoom(QWidget *parent) :
 
     connect(ui->send, SIGNAL(clicked()), this, SLOT(slot_sendMessage()));
     connect(ui->clearText, SIGNAL(clicked()), this, SLOT(slot_clearInput()));
-
-
 }
 
 ChatRoom::~ChatRoom()
@@ -23,6 +21,9 @@ ChatRoom::~ChatRoom()
     delete ui;
 }
 
+void ChatRoom::setName(QString &name) {
+    ui->name->setText(name);
+}
 
 void ChatRoom::newClient(ChatClient* newClient) {
     clients.push_back(newClient);
