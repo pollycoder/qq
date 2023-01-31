@@ -1,4 +1,5 @@
 #include "chatclient.h"
+#include "chatroom.h"
 #include "ui_chatclient.h"
 #include <QAbstractSocket>
 
@@ -12,19 +13,19 @@ ChatClient::ChatClient(QWidget *parent) :
     ui(new Ui::ChatClient)
 {
     ui->setupUi(this);
+
+    connect(ui->chats, SIGNAL(clicked()), this, SLOT(slot_chats()));
+    connect(ui->friends, SIGNAL(clicked()), this, SLOT(slot_friends()));
+    connect(ui->logout, SIGNAL(clicked()), this, SLOT(slot_logout()));
+
+    connect(ui->chatrooms, SIGNAL(doubleClicked(QModelIndex)), this, SLOT(slot_doubleclickedChatRoom(QModelIndex)));
+
     socket = new QTcpSocket(this);
     SetKeepAlive(socket);
     connect(socket, SIGNAL(readyRead()), this, SLOT(slot_readMessage()));
     connect(socket, SIGNAL(errorOccurred(QAbstractSocket::SocketError)), this, SLOT(slot_disconnected()));
     connect(socket, SIGNAL(hostFound()), this, SLOT(slot_connected()));
     connectToServer();
-
-    QStandardItemModel* root_model = new QStandardItemModel();
-    QStandardItem* model_forum = new QStandardItem(QIcon(":/img/chatroom.png"), "Chattery Forum");
-    QStandardItem* model_family = new QStandardItem(QIcon(":/img/chatroom.png"), "Chattery Family");
-    root_model->appendRow(model_forum);
-    root_model->appendRow(model_family);
-    ui->chatrooms->setModel(root_model);
 
     setMinimumSize(588,408);
     setMaximumSize(588,408);
@@ -48,13 +49,9 @@ void ChatClient::paintEvent(QPaintEvent *) {
 
 void ChatClient::connectToServer() {
     if (!ifConnected) {
-        qDebug() << "try to reconnect";
         socket->connectToHost("192.168.31.113", 9999);
 
-        if (ifConnected) {
-            qDebug() << "New connection !" << username;
-        }
-        else {
+        if (!ifConnected){
             failureTime += 1;
             connectToServer();
             if (failureTime >= 3) {
@@ -87,8 +84,6 @@ void ChatClient::setUser(const QString &tel) {
 
 
 
-
-
 void ChatClient::slot_sendMessage(QString input_msg) {
     QString msg = username + ": " + input_msg;
     socket->write(msg.toStdString().data());
@@ -112,5 +107,31 @@ void ChatClient::slot_sendUserInfo() {
     socket->waitForBytesWritten();
 }
 
+void ChatClient::slot_chats() {
+    QStandardItemModel* root_model = new QStandardItemModel();
+    QStandardItem* model1 = new QStandardItem(QIcon(":/img/chatroom.png"), "Chattery Forum");
+    QStandardItem* model2 = new QStandardItem(QIcon(":/img/chatroom.png"), "Chattery Family");
+    root_model->appendRow(model1);
+    root_model->appendRow(model2);
+    ui->chatrooms->setModel(root_model);
+}
 
+void ChatClient::slot_friends() {
+    QStandardItemModel* root_model = new QStandardItemModel();
+    QStandardItem* model1 = new QStandardItem(QIcon(":/img/user_boy.png"), "Mary");
+    QStandardItem* model2 = new QStandardItem(QIcon(":/img/user_boy.png"), "Jessie");
+    root_model->appendRow(model1);
+    root_model->appendRow(model2);
+    ui->chatrooms->setModel(root_model);
+}
+
+void ChatClient::slot_logout() {
+    emit logout();
+}
+
+void ChatClient::slot_doubleclickedChatRoom(QModelIndex model) {
+    qDebug() << "Chatroom open !";
+    QString roomName = ui->chatrooms->model()->data(model).toString();
+    emit openRoom(roomName);
+}
 

@@ -18,6 +18,8 @@ MainWindow::MainWindow(QWidget *parent)
     ui->input_pw->setEchoMode(QLineEdit::Password);
     connect(ui->login, SIGNAL(clicked()), this, SLOT(slot_login()));
     connect(ui->signup, SIGNAL(clicked()), this, SLOT(slot_register()));
+    connect(user_client, SIGNAL(logout()), this, SLOT(slot_logout()));
+    connect(user_client, SIGNAL(openRoom(QString)), this, SLOT(slot_openRoom(QString)));
 }
 
 MainWindow::~MainWindow(){
@@ -39,6 +41,9 @@ void MainWindow::slot_login() {
             this->close();
             this->user_client->setUser(tel);
             this->user_client->show();
+            QString name = user_client->getUsername();
+            room->setUserClient(user_client);
+            //room->user_client->setUsername(name);
         } else {
             QMessageBox::critical(NULL, "Password incorrect !!!",
                                   "The password is incorrect ! Please try again !");
@@ -53,9 +58,17 @@ void MainWindow::slot_register() {
     regwindow->show();
 }
 
+void MainWindow::slot_logout() {
+    QMessageBox::information(NULL, "Log out !", "You will leave Chattery, sure to exit ?");
+    user_client->close();
+    this->show();
+    user_client->newUser();
+}
 
-
-
+void MainWindow::slot_openRoom(QString roomName) {
+    room->setName(roomName);
+    room->show();
+}
 
 // !!!!!!--------------------------------------------------------------!!!!!!!!
 // !!!!!!----------------------------Warning---------------------------!!!!!!!!

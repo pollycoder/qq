@@ -16,7 +16,6 @@ ChatServer::~ChatServer() {
 }
 
 void ChatServer::start_server() {
-    qDebug() << "start a new server !";
     server = new QTcpServer(this);
     server->listen(QHostAddress("192.168.31.113"), 9999);
     if (server->isListening()) {
@@ -52,7 +51,6 @@ void ChatServer::slot_readyRead() {
 
 void ChatServer::slot_disconnected() {
     while (!server->isListening()) {
-        qDebug() << "Host closed !";
         start_server();
     }
 }

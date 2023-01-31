@@ -11,9 +11,12 @@ ChatRoom::ChatRoom(QWidget *parent) :
     QTcpServer* tmp_server = server->getServer();
     QHostAddress tmp_host = tmp_server->serverAddress();
 
-
+    connect(this, SIGNAL(send(QString)), user_client, SLOT(slot_sendMessage(QString)));
+    connect(user_client, SIGNAL(alreadyRead(QString)), this, SLOT(slot_displayMessage(QString)));
+    connect(this->user_client, SIGNAL(disconnected()), this->server, SLOT(slot_disconnected()));
     connect(ui->send, SIGNAL(clicked()), this, SLOT(slot_sendMessage()));
     connect(ui->clearText, SIGNAL(clicked()), this, SLOT(slot_clearInput()));
+    connect(server, SIGNAL(newConnection()), this, SLOT(slot_newClient()));
 }
 
 ChatRoom::~ChatRoom()
@@ -34,6 +37,14 @@ void ChatRoom::newClient(ChatClient* newClient) {
 }
 
 
+void ChatRoom::setUserClient(ChatClient* &client) {
+    QString name = client->getUsername();
+    QPixmap pic = client->getAvatar();
+    user_client->setUsername(name);
+    user_client->setUserAvatar(pic);
+}
+
+
 // Slots
 void ChatRoom::slot_sendMessage() {
     QString msg = ui->inputMsg->toPlainText();
@@ -50,6 +61,6 @@ void ChatRoom::slot_clearInput() {
 }
 
 
-void ChatRoom::slot_newClient(ChatClient* client) {
-    newClient(client);
+void ChatRoom::slot_newClient() {
+
 }
