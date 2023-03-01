@@ -35,6 +35,6 @@
 
 .QListView#chatrooms {
     background-color: #8B658B;
-    font: 20pt "Arial";
+    font: 30pt "Arial";
     color: white;
 }

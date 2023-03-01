@@ -1,0 +1,21 @@
+
+#ChatRoom {
+    border-image: url(:/img/welcome_bg.jpeg);
+}
+
+.QLabel#name {
+    font: 30pt "Chalkboard SE";
+    color: rgb(255, 251, 0);
+}
+
+.QListWidget#userlist {
+    background-color: violet;
+    font: 20pt "Chalkboard";
+    color: yellow;
+}
+
+.QTextBrowser#textBrowser {
+    background-color: purple;
+    font: 15pt "Arial";
+    color: yellow;
+}

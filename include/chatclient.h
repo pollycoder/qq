@@ -13,8 +13,12 @@
 #include <QStandardItemModel>
 #include <QIcon>
 #include <QPainter>
+#include <QTimer>
+#include <qdatetime.h>
 
 #include "utils.h"
+
+class ChatRoom;
 
 namespace Ui {
 class ChatClient;
@@ -32,9 +36,19 @@ public:
 
     void connectToServer(); // Connect to the server
 
+    void setUsername(QString &name) { username = name; }
+    void setUserAvatar(QPixmap pic) { avatar = pic; }
     QString getUsername() { return username; }
+    QPixmap getAvatar() { return avatar; }
     QTcpSocket* getSocket() { return socket; }
     void setUser(const QString &tel);
+    void newUser() {
+        username = "";
+        avatar = QPixmap();
+        friends.clear();
+        message = "";
+        failureTime = 0;
+    }
 
 
 
@@ -42,20 +56,24 @@ private slots:
     void slot_sendMessage(QString);
     void slot_readMessage();
     void slot_disconnected();
-    void slot_connected() {
-        ifConnected = true;
-        qDebug() << "Reconnected successfully !";
-    }
+    void slot_connected() { ifConnected = true; }
     void slot_sendUserInfo();
+    void slot_chats();
+    void slot_friends();
+    void slot_logout();
+    void slot_doubleclickedChatRoom(QModelIndex model);
     signals:
     void alreadyRead(QString);
+    void logout();
+    void openRoom(QString);
+    void userInfo(QString);
 
 
 private:
     int failureTime = 0;
     Ui::ChatClient *ui;
     QTcpSocket *socket;
-    QString username;
+    QString username = "polly1";
     bool ifConnected = false;
     QString message;
     QVector<ChatClient*> friends;

@@ -30,6 +30,9 @@ public slots:
     void slot_disconnected();                       // When a client is offline, disconnected() signal
     void slot_readyRead();                          // When a client sends message, readyRead() signal
 
+signals:
+    void userInfo(QString);
+
 private:
     Ui::ChatServer *ui;
     QTcpServer *server;

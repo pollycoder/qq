@@ -16,7 +16,6 @@ ChatServer::~ChatServer() {
 }
 
 void ChatServer::start_server() {
-    qDebug() << "start a new server !";
     server = new QTcpServer(this);
     server->listen(QHostAddress("192.168.31.113"), 9999);
     if (server->isListening()) {
@@ -38,8 +37,7 @@ void ChatServer::send_message(const QByteArray &msg) {
 void ChatServer::slot_newConnection() {
     QTcpSocket *new_client = server->nextPendingConnection();
     clients.push_back(new_client);
-    QString clientInfo = new_client->peerAddress().toString() + ":"+  QString::number(new_client->peerPort());
-    ui->clients->addItem(clientInfo);
+
     connect(new_client, SIGNAL(readyRead()), this, SLOT(slot_readyRead()));
 }
 
@@ -52,7 +50,6 @@ void ChatServer::slot_readyRead() {
 
 void ChatServer::slot_disconnected() {
     while (!server->isListening()) {
-        qDebug() << "Host closed !";
         start_server();
     }
 }
