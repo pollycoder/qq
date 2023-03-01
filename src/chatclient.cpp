@@ -23,7 +23,7 @@ ChatClient::ChatClient(QWidget *parent) :
     socket = new QTcpSocket(this);
     SetKeepAlive(socket);
     connect(socket, SIGNAL(readyRead()), this, SLOT(slot_readMessage()));
-    connect(socket, SIGNAL(errorOccurred(QAbstractSocket::SocketError)), this, SLOT(slot_disconnected()));
+    connect(socket, SIGNAL(disconnected()), this, SLOT(slot_disconnected()));
     connect(socket, SIGNAL(hostFound()), this, SLOT(slot_connected()));
     connectToServer();
 
@@ -76,6 +76,7 @@ void ChatClient::setUser(const QString &tel) {
             LoadPixmap(ui->avatar, avatar);
             username = record.value("username").toString();
             ui->username->setText(username);
+            emit userInfo(username);
         }
     } else {
         QMessageBox::warning(NULL, "Something is wrong !", "Something bad happens, please try again.");
@@ -85,7 +86,10 @@ void ChatClient::setUser(const QString &tel) {
 
 
 void ChatClient::slot_sendMessage(QString input_msg) {
-    QString msg = username + ": " + input_msg;
+    QDateTime time = QDateTime::currentDateTime();
+    QString msg = QString("<font color=orange>%1</font>").
+                  arg("[" + time.toString("yyyy-MM-dd hh:mm:ss dddd") + "]")
+                  + username + ": " + input_msg;
     socket->write(msg.toStdString().data());
     socket->waitForBytesWritten();
 }
@@ -99,12 +103,30 @@ void ChatClient::slot_readMessage() {
 
 void ChatClient::slot_disconnected() {
     ifConnected = false;
-    connectToServer();
+    switch (socket->state()) {
+        case QAbstractSocket::UnconnectedState: {
+            socket->close();
+            socket->abort();
+            socket->connectToHost("192.168.31.113", 9999);
+            break;
+        }
+        case QAbstractSocket::HostLookupState:
+            break;
+        case QAbstractSocket::ConnectingState:
+            break;
+        case QAbstractSocket::ConnectedState:
+            break;
+        case QAbstractSocket::BoundState:
+            break;
+        case QAbstractSocket::ListeningState:
+            break;
+        case QAbstractSocket::ClosingState:
+            break;
+    }
 }
 
 void ChatClient::slot_sendUserInfo() {
-    socket->write(username.toStdString().data());
-    socket->waitForBytesWritten();
+    emit userInfo(username);
 }
 
 void ChatClient::slot_chats() {

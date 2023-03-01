@@ -13,6 +13,8 @@
 #include <QStandardItemModel>
 #include <QIcon>
 #include <QPainter>
+#include <QTimer>
+#include <qdatetime.h>
 
 #include "utils.h"
 
@@ -64,6 +66,7 @@ private slots:
     void alreadyRead(QString);
     void logout();
     void openRoom(QString);
+    void userInfo(QString);
 
 
 private:

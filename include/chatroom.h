@@ -2,6 +2,7 @@
 #define CHATROOM_H
 
 #include <QWidget>
+#include <QPaintEvent>
 
 #include "chatserver.h"
 #include "chatclient.h"
@@ -22,11 +23,13 @@ public:
     void newClient(ChatClient* newClient);
     void setName(QString &name);
     void setUserClient(ChatClient* &client);
+
+    void paintEvent(QPaintEvent *);
 private slots:
     void slot_sendMessage();
     void slot_displayMessage(QString msg);
     void slot_clearInput();
-    void slot_newClient();
+    void slot_newClient(QString user);
 
     signals:
     void send(QString);

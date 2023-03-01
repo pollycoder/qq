@@ -37,8 +37,7 @@ void ChatServer::send_message(const QByteArray &msg) {
 void ChatServer::slot_newConnection() {
     QTcpSocket *new_client = server->nextPendingConnection();
     clients.push_back(new_client);
-    QString clientInfo = new_client->peerAddress().toString() + ":"+  QString::number(new_client->peerPort());
-    ui->clients->addItem(clientInfo);
+
     connect(new_client, SIGNAL(readyRead()), this, SLOT(slot_readyRead()));
 }
 

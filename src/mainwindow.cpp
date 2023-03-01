@@ -20,6 +20,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->signup, SIGNAL(clicked()), this, SLOT(slot_register()));
     connect(user_client, SIGNAL(logout()), this, SLOT(slot_logout()));
     connect(user_client, SIGNAL(openRoom(QString)), this, SLOT(slot_openRoom(QString)));
+    connect(this, SIGNAL(userInfo(QString)), room, SLOT(slot_newClient(QString)));
 }
 
 MainWindow::~MainWindow(){
@@ -43,7 +44,9 @@ void MainWindow::slot_login() {
             this->user_client->show();
             QString name = user_client->getUsername();
             room->setUserClient(user_client);
+            emit userInfo(username);
             //room->user_client->setUsername(name);
+
         } else {
             QMessageBox::critical(NULL, "Password incorrect !!!",
                                   "The password is incorrect ! Please try again !");

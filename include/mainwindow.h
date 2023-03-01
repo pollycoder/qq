@@ -25,6 +25,9 @@ private slots:
     void slot_logout();
     void slot_openRoom(QString roomName);
 
+signals:
+    void userInfo(QString);
+
 
 
 

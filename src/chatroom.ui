@@ -50,13 +50,7 @@
     <property name="orientation">
      <enum>Qt::Horizontal</enum>
     </property>
-    <widget class="QTextBrowser" name="textBrowser">
-     <property name="styleSheet">
-      <string notr="true">background-color: rgb(255, 255, 255);
-color: rgb(0, 0, 0);
-font: 13pt &quot;Bodoni 72&quot;;</string>
-     </property>
-    </widget>
+    <widget class="QTextBrowser" name="textBrowser"/>
     <widget class="QListWidget" name="userlist"/>
    </widget>
    <widget class="QWidget" name="layoutWidget">
